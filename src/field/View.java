@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import cell.Cell;
 
 public class View extends JPanel {
+    /**
+     * If a serializable class does not explicitly declare a serialVersionUID, then the serialization runtime will calculate a default serialVersionUID value for that class based on various aspects of the class, as described in the Java(TM) Object Serialization Specification. However, it is strongly recommended that all serializable classes explicitly declare serialVersionUID values, since the default serialVersionUID computation is highly sensitive to class details that may vary depending on compiler implementations, and can thus result in unexpected InvalidClassExceptions during deserialization. Therefore, to guarantee a consistent serialVersionUID value across different java compiler implementations, a serializable class must declare an explicit serialVersionUID value. It is also strongly advised that explicit serialVersionUID declarations use the private modifier where possible, since such declarations apply only to the immediately declaring class — serialVersionUID fields are not useful as inherited members.
+     */
     private static final long serialVersionUID = -5258995676212660595L;
     private static final int GRID_SIZE = 16;
     private Field theField;

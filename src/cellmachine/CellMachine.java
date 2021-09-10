@@ -39,13 +39,7 @@ public class CellMachine {
             for (int row = 0; row < field.getHeight(); row++) {
                 for (int col = 0; col < field.getWidth(); col++) {
                     Cell cell = field.get(row, col);
-                    Cell[] neighbour = field.getNeighbour(row, col);
-                    int numOfLive = 0;
-                    for (Cell c : neighbour) {
-                        if (c.isAlive()) {
-                            numOfLive++;
-                        }
-                    }
+                    int numOfLive = field.getNeighbourInLive(row, col);
                     System.out.print("[" + row + "][" + col + "]:");
                     System.out.print(cell.isAlive() ? "live" : "dead");
                     System.out.print(":" + numOfLive + "-->");

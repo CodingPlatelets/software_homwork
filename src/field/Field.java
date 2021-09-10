@@ -1,6 +1,7 @@
 package field;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cell.Cell;
 
@@ -33,8 +34,8 @@ public class Field {
         return field[row][col];
     }
 
-    public Cell[] getNeighbour(int row, int col) {
-        ArrayList<Cell> list = new ArrayList<Cell>();
+    public int getNeighbourInLive(int row, int col) {
+        List<Cell> list = new ArrayList<Cell>();
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 int r = row + i;
@@ -44,7 +45,13 @@ public class Field {
                 }
             }
         }
-        return list.toArray(new Cell[list.size()]);
+        int numOfLive = 0;
+        for (Cell c : list) {
+            if (c.isAlive()) {
+                numOfLive++;
+            }
+        }
+        return numOfLive;
     }
 
     public void clear() {

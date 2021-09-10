@@ -9,7 +9,7 @@ import field.View;
 public class CellMachine {
 
     public static void main(String[] args) {
-        Field field = new Field(40, 40);
+        Field field = new Field(40, 20);
         for (int row = 0; row < field.getHeight(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
                 field.place(row, col, new Cell());
@@ -35,6 +35,7 @@ public class CellMachine {
         frame.setVisible(true);
 
         for (int i = 0; i < 1000; i++) {
+            boolean flag = false;
             for (int row = 0; row < field.getHeight(); row++) {
                 for (int col = 0; col < field.getWidth(); col++) {
                     Cell cell = field.get(row, col);
@@ -50,10 +51,12 @@ public class CellMachine {
                     System.out.print(":" + numOfLive + "-->");
                     if (cell.isAlive()) {
                         if (numOfLive < 2 || numOfLive > 3) {
+                            flag = true;
                             cell.die();
                             System.out.print("die");
                         }
                     } else if (numOfLive == 3) {
+                        flag = true;
                         cell.reborn();
                         System.out.print("reborn");
                     }
@@ -66,6 +69,16 @@ public class CellMachine {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+            if (!flag) {
+                for (int row = 0; row < field.getHeight(); row++) {
+                    for (int col = 0; col < field.getWidth(); col++) {
+                        Cell cell = field.get(row, col);
+                        if (Math.random() < 0.1) {
+                            cell.reborn();
+                        }
+                    }
+                }
             }
         }
     }
